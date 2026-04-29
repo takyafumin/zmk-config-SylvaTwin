@@ -13,54 +13,61 @@
     combos {
         compatible = "zmk,combos";
 
-        prtsc {
-            bindings = <&kp PRINTSCREEN>;
-            key-positions = <10 11>;
-        };
-
-        RightClick {
-            bindings = <&mkp RCLK>;
-            key-positions = <30 44>;
-        };
-
-        MiddleClick {
-            bindings = <&mkp MCLK>;
-            key-positions = <29 43>;
-        };
-
-        RightClick2 {
-            bindings = <&mkp RCLK>;
-            key-positions = <31 45>;
-        };
-
-        MiddleClick2 {
-            bindings = <&mkp MCLK>;
-            key-positions = <32 46>;
-        };
-
-        zen-han {
-            bindings = <&kp GRAVE>;
-            key-positions = <0 1>;
-        };
-
-        paste {
-            bindings = <&kp LC(V)>;
-            key-positions = <42 28>;
-        };
-
-        copy {
-            bindings = <&kp LC(C)>;
-            key-positions = <41 27>;
-        };
-
-        cut {
-            bindings = <&kp LC(X)>;
-            key-positions = <40 26>;
-        };
-
-        prev_click {
+        mouse-prev {
             bindings = <&mkp MB4>;
-            key-positions = <29 30>;
+            key-positions = <19 7>;
+        };
+
+        mouse-next {
+            bindings = <&mkp MB5>;
+            key-positions = <8 20>;
+        };
+    };
+
+    behaviors {
+        tap_preferred: tap_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_PREFERRED";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            require-prior-idle-ms = <125>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <180>;
+        };
+
+        hold_preferred: hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_PREFERRED";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <180>;
+        };
+
+        layer_tap_prefferd: layer_tap_prefferd {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_PREFFERD";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <180>;
+            flavor = "tap-preferred";
+            require-prior-idle-ms = <125>;
+        };
+
+        layer_hold_preferred: layer_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_HOLD_PREFERRED";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <180>;
+            flavor = "tap-preferred";
         };
     };
 
@@ -69,35 +76,62 @@
 
         default_layer {
             bindings = <
-&kp ESC     &kp Q     &kp W     &kp E  &kp R    &kp T                            &kp Y  &kp U      &kp I      &kp O     &kp P      &kp BSPC
-&kp TAB     &kp A     &kp S     &kp D  &kp F    &kp G                            &kp H  &kp J      &kp K      &kp L     &kp SLASH  &kp ENTER
-&kp LSHIFT  &kp Z     &kp X     &kp C  &kp V    &kp B      &mkp LCLK  &mkp LCLK  &kp N  &kp M      &kp COMMA  &kp DOT   &kp UP     &kp RSHIFT
-&kp LCTRL   &kp LGUI  &kp LALT  &none  &kp DEL  &kp SPACE  &lt 1 F7   &lt 2 F10  &none  &kp MINUS  &none      &kp LEFT  &kp DOWN   &kp RIGHT
+&kp ESC     &kp Q                                    &kp W                      &kp E                       &kp R                        &kp T                                                                      &kp Y                             &kp U                        &kp I                       &kp O                       &kp P                                        &kp BSPC
+&kp TAB     &tap_preferred LCTRL A                   &tap_preferred LEFT_GUI S  &tap_preferred RIGHT_ALT D  &tap_preferred LEFT_SHIFT F  &kp G                                                                      &kp H                             &tap_preferred LEFT_SHIFT J  &tap_preferred RIGHT_ALT K  &tap_preferred RIGHT_GUI L  &tap_preferred LEFT_CONTROL MINUS            &kp ENTER
+&sk LSHIFT  &tap_preferred LA(LC(LG(LEFT_SHIFT))) Z  &kp X                      &kp C                       &kp V                        &kp B                         &mkp LCLK  &mkp RCLK                         &kp N                             &layer_tap_prefferd 4 M      &kp COMMA                   &kp DOT                     &tap_preferred LA(LC(LG(LEFT_SHIFT))) SLASH  &sk LEFT_SHIFT
+&sk LCTRL   &none                                    &none                      &none                       &kp ESCAPE                   &layer_hold_preferred 1 INT6  &kp SPACE  &hold_preferred LEFT_SHIFT ENTER  &layer_hold_preferred 2 INT_KANA  &kp TAB                      &none                       &kp LG(LS(N4))              &mo 5                                        &sk LEFT_COMMAND
+            >;
+
+            sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
+        };
+
+        marks {
+            bindings = <
+&trans  &kp EXCLAMATION                               &kp AT_SIGN                        &kp HASH  &kp DOLLAR                       &kp PERCENT                           &kp CARET                    &kp AMPERSAND                   &kp ASTERISK                       &kp LEFT_PARENTHESIS          &kp RIGHT_PARENTHESIS                           &trans
+&trans  &tap_preferred LEFT_CONTROL TAB               &tap_preferred LEFT_COMMAND GRAVE  &trans    &tap_preferred LEFT_SHIFT COLON  &kp BACKSLASH                         &kp LEFT                     &tap_preferred LEFT_SHIFT DOWN  &tap_preferred RIGHT_ALT UP_ARROW  &tap_preferred LEFT_GUI LEFT  &tap_preferred LEFT_CONTROL UNDER               &trans
+&trans  &tap_preferred LC(LG(LA(LEFT_SHIFT))) ESCAPE  &kp TILDE                          &trans    &kp SEMICOLON                    &kp PIPE       &trans  &kp DELETE     &kp EQUAL                    &kp SINGLE_QUOTE                &kp LESS_THAN                      &kp GREATER_THAN              &tap_preferred LA(LC(LG(LEFT_SHIFT))) QUESTION  &trans
+&trans  &trans                                        &trans                             &trans    &trans                           &trans         &trans  &kp BACKSPACE  &layer_tap_prefferd 2 ENTER  &trans                          &trans                             &trans                        &trans                                          &trans
+            >;
+        };
+
+        number {
+            bindings = <
+&trans  &kp NUMBER_1                                  &kp NUMBER_2                       &kp N3                                 &kp N4                                   &kp N5                                            &kp N6        &kp N7  &kp N8  &kp N9  &kp N0  &trans
+&trans  &tap_preferred LEFT_CONTROL TAB               &tap_preferred LEFT_COMMAND GRAVE  &tap_preferred RIGHT_ALT LEFT_BRACKET  &tap_preferred LEFT_SHIFT RIGHT_BRACKET  &kp BACKSLASH                                     &trans        &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &tap_preferred LA(LC(LG(LEFT_SHIFT))) ESCAPE  &kp TILDE                          &kp LEFT_BRACE                         &kp RIGHT_BRACE                          &kp PIPE                  &trans          &trans  &trans        &kp N1  &kp N2  &kp N3  &trans  &trans
+&trans  &trans                                        &trans                             &trans                                 &trans                                   &layer_tap_prefferd 3 N0  &sk LEFT_SHIFT  &trans  &kp NUMBER_0  &trans  &trans  &none   &none   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        layer_1 {
+        functionkey {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                                  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS      &kp EQUAL         &kp INTERNATIONAL_3
-&trans  &trans  &trans  &trans  &trans  &trans                                  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none          &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans          &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SEMICOLON  &kp SINGLE_QUOTE  &kp BSLH
-&trans  &trans  &trans  &trans  &trans  &kp LEFT_SHIFT  &trans  &studio_unlock  &kp NUMBER_0  &kp COMMA     &kp DOT       &none          &none             &kp INTERNATIONAL_1
+&none         &kp F1            &kp F2            &kp F3         &kp F4          &kp F5                             &kp F6    &kp F7         &kp F8       &kp F9   &kp F10  &none
+&none         &sk LEFT_CONTROL  &sk LEFT_COMMAND  &sk RIGHT_ALT  &sk LEFT_SHIFT  &none                              &kp HOME  &kp PAGE_DOWN  &kp PAGE_UP  &kp END  &none    &none
+&none         &kp CAPS          &none             &none          &none           &none       &none           &none  &none     &kp F11        &kp F12      &none    &none    &none
+&bt BT_SEL 0  &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3   &bt BT_SEL 4    &bt BT_CLR  &studio_unlock  &none  &none     &none          &none        &none    &none    &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        layer_2 {
+        kakko {
             bindings = <
-&none         &kp F1        &kp F2        &kp F3        &kp F4        &kp F5                              &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
-&none         &kp F6        &kp F7        &kp F8        &kp F9        &kp F10                             &mkp MCLK  &trans     &trans  &trans  &trans  &trans
-&none         &kp F11       &kp F12       &none         &none         &none       &none           &trans  &trans     &trans     &trans  &trans  &trans  &trans
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR  &studio_unlock  &trans  &trans     &trans     &trans  &trans  &trans  &trans
+&trans  &kp ESCAPE                       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans                  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans  &trans  &trans
+&trans  &tap_preferred LEFT_CONTROL TAB  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans                  &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans  &trans  &trans
+&trans  &kp CAPSLOCK                     &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans  &trans  &trans  &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans  &trans  &trans
+&trans  &trans                           &trans  &trans                &trans                 &trans  &trans  &trans  &trans  &trans                &trans                 &trans  &trans  &trans
             >;
+        };
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        bluetooth {
+            bindings = <
+&trans        &trans        &trans        &trans        &trans        &trans                              &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans                              &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans        &trans        &trans        &trans      &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR    &trans        &trans        &trans        &bt BT_PRV    &bt BT_NXT  &trans  &bt BT_CLR_ALL  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
         };
     };
 };
