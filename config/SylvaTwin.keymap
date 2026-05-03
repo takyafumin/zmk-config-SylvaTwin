@@ -96,10 +96,10 @@
 
         number {
             bindings = <
-&trans  &kp NUMBER_1                                  &kp NUMBER_2                       &kp N3                                 &kp N4                                   &kp N5                                            &kp N6        &kp N7  &kp N8  &kp N9  &kp N0  &trans
-&trans  &tap_preferred LEFT_CONTROL TAB               &tap_preferred LEFT_COMMAND GRAVE  &tap_preferred RIGHT_ALT LEFT_BRACKET  &tap_preferred LEFT_SHIFT RIGHT_BRACKET  &kp BACKSLASH                                     &trans        &kp N4  &kp N5  &kp N6  &trans  &trans
-&trans  &tap_preferred LA(LC(LG(LEFT_SHIFT))) ESCAPE  &kp TILDE                          &kp LEFT_BRACE                         &kp RIGHT_BRACE                          &kp PIPE                  &trans          &trans  &trans        &kp N1  &kp N2  &kp N3  &trans  &trans
-&trans  &trans                                        &trans                             &trans                                 &trans                                   &layer_tap_prefferd 3 N0  &sk LEFT_SHIFT  &trans  &kp NUMBER_0  &trans  &trans  &none   &none   &trans
+&trans  &kp NUMBER_1                                  &kp NUMBER_2                       &kp N3                                 &kp N4                                   &kp N5                                            &kp N6         &kp N7  &kp N8  &kp N9  &kp N0  &trans
+&trans  &tap_preferred LEFT_CONTROL TAB               &tap_preferred LEFT_COMMAND GRAVE  &tap_preferred RIGHT_ALT LEFT_BRACKET  &tap_preferred LEFT_SHIFT RIGHT_BRACKET  &kp BACKSLASH                                     &kp BACKSPACE  &kp N4  &kp N5  &kp N6  &trans  &trans
+&trans  &tap_preferred LA(LC(LG(LEFT_SHIFT))) ESCAPE  &kp TILDE                          &kp LEFT_BRACE                         &kp RIGHT_BRACE                          &kp PIPE                  &trans          &trans  &trans         &kp N1  &kp N2  &kp N3  &trans  &trans
+&trans  &trans                                        &trans                             &trans                                 &trans                                   &layer_tap_prefferd 3 N0  &sk LEFT_SHIFT  &trans  &kp NUMBER_0   &trans  &trans  &none   &none   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
