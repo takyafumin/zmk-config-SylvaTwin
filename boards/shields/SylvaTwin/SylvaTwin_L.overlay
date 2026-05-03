@@ -79,7 +79,6 @@
     
     clock-frequency = <100000>; 
     oled: ssd1306@3c {
-        status = "disabled";
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
         width = <128>;

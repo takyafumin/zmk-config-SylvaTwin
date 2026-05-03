@@ -22,7 +22,7 @@ include:
 #  - board: seeeduino_xiao_ble
 #    shield: settings_reset
   - board: seeeduino_xiao_ble
-    shield: SylvaTwin_L dongle_display
+    shield: SylvaTwin_L
     
   - board: seeeduino_xiao_ble
     shield: SylvaTwin_R
