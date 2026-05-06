@@ -69,6 +69,13 @@
             quick-tap-ms = <180>;
             flavor = "tap-preferred";
         };
+
+        msc_scroll: msc_scroll {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "MSC_SCROLL";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        };
     };
 
     keymap {
@@ -82,7 +89,7 @@
 &sk LCTRL   &mo 2                                    &none                      &none                       &layer_hold_preferred 6 ESCAPE  &layer_hold_preferred 1 LANGUAGE_2  &kp SPACE  &tap_preferred LEFT_SHIFT ENTER  &layer_hold_preferred 2 LANGUAGE_1  &hold_preferred LEFT_COMMAND CAPSLOCK  &none                       &kp LG(LS(N4))              &mo 5                                        &sk LEFT_COMMAND
             >;
 
-            sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
+            sensor-bindings = <&msc_scroll>;
         };
 
         marks {
