@@ -74,8 +74,10 @@
             compatible = "zmk,behavior-sensor-rotate";
             label = "MSC_SCROLL";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            // 診断用：一時的にスクロールを矢印キーに変更
+            bindings = <&kp DOWN>, <&kp UP>;
             tap-ms = <20>;
+            wait-ms = <20>;
         };
     };
 
