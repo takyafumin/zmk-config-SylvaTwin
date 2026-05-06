@@ -77,7 +77,6 @@
             // 診断用：一時的にスクロールを矢印キーに変更
             bindings = <&kp DOWN>, <&kp UP>;
             tap-ms = <20>;
-            wait-ms = <20>;
         };
     };
 
