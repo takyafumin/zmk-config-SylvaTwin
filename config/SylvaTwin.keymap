@@ -70,25 +70,14 @@
             flavor = "tap-preferred";
         };
 
-        msc_scroll_down: msc_scroll_down {
-            compatible = "zmk,behavior-mouse-scroll";
-            #binding-cells = <0>;
-            y-pixels = <(-7)>;
-        };
-
-        msc_scroll_up: msc_scroll_up {
-            compatible = "zmk,behavior-mouse-scroll";
-            #binding-cells = <0>;
-            y-pixels = <7>;
-        };
-
         msc_scroll: msc_scroll {
             compatible = "zmk,behavior-sensor-rotate";
             label = "MSC_SCROLL";
             #sensor-binding-cells = <0>;
-            bindings = <&msc_scroll_down>, <&msc_scroll_up>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            tap-ms = <10>;
         };
-        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
